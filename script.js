@@ -12,12 +12,12 @@ const removeUselessButton = (length) => {
   }
 };
 
-const patchYear = (year) => {
-  if (hiddenYear) hiddenYear.hidden = false;
-  hiddenYear = findElemByText("li", year, XPathResult.FIRST_ORDERED_NODE_TYPE)
-    ?.singleNodeValue;
-  hiddenYear?.hidden = true;
-};
+// const patchYear = (year) => {
+//   if (hiddenYear) hiddenYear.hidden = false;
+//   hiddenYear = findElemByText("li", year, XPathResult.FIRST_ORDERED_NODE_TYPE)
+//     ?.singleNodeValue;
+//   hiddenYear?.hidden = true;
+// };
 
 const findElemByText = (tag, text, xpathType) => {
   const node = document.evaluate(
