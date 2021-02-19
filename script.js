@@ -89,29 +89,33 @@ const fetchData = async (year) => {
 
 const patchMyEpitech = async () => {
     isActive = true;
-    const currentYear = getYear(window.location.href);
-    patchYear(currentYear);
-    const projects = await fetchData(currentYear);
-    removeUselessButton(projects.length);
-    stockProj = projects;
+    try {
+        const currentYear = getYear(window.location.href);
+        patchYear(currentYear);
+        const projects = await fetchData(currentYear);
+        removeUselessButton(projects.length);
+        stockProj = projects;
 
-    // const coverage = findElemByText('div', 'Coverage', XPathResult.ANY_TYPE);
-    // var node,
-    //     nodes = [];
-    // while ((node = coverage.iterateNext())) nodes.push(node);
-    // console.log(nodes);
+        // const coverage = findElemByText('div', 'Coverage', XPathResult.ANY_TYPE);
+        // var node,
+        //     nodes = [];
+        // while ((node = coverage.iterateNext())) nodes.push(node);
+        // console.log(nodes);
 
-    projects.map((proj) => {
-        try {
-            insertCircle(proj);
-            // if (
-            //     proj.results.externalItems.find((elem) => elem.type === 'coverage.branches')?.value === 0 &&
-            //     proj.results.externalItems.find((elem) => elem.type === 'coverage.lines')?.value === 0
-            // )
-        } catch (e) {
-            console.log(e);
-        }
-    });
+        projects.map((proj) => {
+            try {
+                insertCircle(proj);
+                // if (
+                //     proj.results.externalItems.find((elem) => elem.type === 'coverage.branches')?.value === 0 &&
+                //     proj.results.externalItems.find((elem) => elem.type === 'coverage.lines')?.value === 0
+                // )
+            } catch (e) {
+                console.log(e);
+            }
+        });
+    } catch (e) {
+        console.log(e);
+    }
     isActive = false;
 };
 
