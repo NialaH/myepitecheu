@@ -1,3 +1,4 @@
+let isActive = false;
 let addedElements = [];
 let hiddenYear = null;
 
@@ -98,6 +99,7 @@ const fetchData = async (year) => {
 };
 
 const patchMyEpitech = async () => {
+  isActive = true;
   if (window.innerWidth > 1000) {
     const currentYear = getYear(window.location.href);
     //patchYear(currentYear);
@@ -122,10 +124,11 @@ const patchMyEpitech = async () => {
       }
     });
   } else alert("L'extension est uniquement disponible sur PC");
+  isActive = false;
 };
 
 chrome.runtime.onMessage.addListener(async (request, sender, sendResponse) => {
-  if (request.message === "refresh") {
+  if (request.message === "refresh" && !isActive) {
     console.log("Trigger url change");
     addedElements.map((elem) => elem.remove());
     addedElements = [];
@@ -133,4 +136,4 @@ chrome.runtime.onMessage.addListener(async (request, sender, sendResponse) => {
   }
 });
 
-if (window.location.href.includes("all/all")) patchMyEpitech();
+patchMyEpitech();
