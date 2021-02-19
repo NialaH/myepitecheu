@@ -13,12 +13,12 @@ const removeUselessButton = (length) => {
   }
 };
 
-// const patchYear = (year) => {
-//   if (hiddenYear) hiddenYear.hidden = false;
-//   hiddenYear = findElemByText("li", year, XPathResult.FIRST_ORDERED_NODE_TYPE)
-//     ?.singleNodeValue;
-//   hiddenYear?.hidden = true;
-// };
+const patchYear = (year) => {
+  if (hiddenYear) hiddenYear.hidden = false;
+  hiddenYear = findElemByText("li", year, XPathResult.FIRST_ORDERED_NODE_TYPE)
+    ?.singleNodeValue;
+  hiddenYear?.hidden = true;
+};
 
 const findElemByText = (tag, text, xpathType) => {
   const node = document.evaluate(
@@ -102,7 +102,7 @@ const patchMyEpitech = async () => {
   isActive = true;
   if (window.innerWidth > 1000) {
     const currentYear = getYear(window.location.href);
-    //patchYear(currentYear);
+    patchYear(currentYear);
     const projects = await fetchData(currentYear);
     removeUselessButton(projects.length);
 
