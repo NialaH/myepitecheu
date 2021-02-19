@@ -1,19 +1,36 @@
 # Chrome Extension my.epitech.eu
 
+-   **Repository name:** myepitecheu
+-   **Language:** CSS, JavaScript
+
+# For a more colourful world
+
 Make my.epitech.eu Great Again !
 
-## How to install
+## Prerequisites
 
-#### First step
+What you need
 
 ```
-git clone https://github.com/NialaH/myepitecheu
+Google Chrome
 ```
 
-#### Second step
+## How to install it
 
-Open "chrome://extensions/" in Chrome
+### Step 1 : Clone the repository
 
-Activate Developer Mode
+```
+~/> git clone https://github.com/NialaH/myepitecheu
+```
 
-Click on "Load unpacked" and select repository folder.
+### Step 2 : Load the unpacked extension
+
+-[x] Go to "[extensions for chrome](chrome://extensions/)".
+
+-[x] Activate Developer Mode
+
+-[x] Load the folder myepitecheu with "Load unpacked".
+
+And now enjoy beautiful colours !!! :rainbow:
+
+> :bulb: Don't forget to put a star on the project to support and enable the release of a more complete version.
