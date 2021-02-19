@@ -126,6 +126,7 @@ const patchMyEpitech = async () => {
 
 chrome.runtime.onMessage.addListener(async (request, sender, sendResponse) => {
   if (request.message === "refresh") {
+    console.log("Trigger url change");
     addedElements.map((elem) => elem.remove());
     addedElements = [];
     await patchMyEpitech();
