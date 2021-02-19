@@ -34,3 +34,5 @@ Google Chrome
 And now enjoy beautiful colours !!! :rainbow:
 
 > :bulb: Don't forget to put a star on the project to support and enable the release of a more complete version.
+
+Thanks Prince MIYIGBENA for this beautiful README
