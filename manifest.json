@@ -1,0 +1,23 @@
+{
+  "manifest_version": 2,
+ 
+  "name": "patch my.epitech.eu",
+  "version": "1.0",
+  "description": "Make my.epitech.eu great again.",
+  "background": {
+    "scripts":["background.js"]
+  },
+  "content_scripts": [{
+    "css": ["style.css"],
+    "js": ["script.js"],
+    "matches": ["https://my.epitech.eu/*"]
+  }],
+  "permissions": [
+    "tabs"
+  ],
+  "icons": { 
+    "16": "16x16.png",
+    "48": "48x48.png",
+    "128": "128x128.png" 
+  }
+}

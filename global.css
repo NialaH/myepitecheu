@@ -1,0 +1,72 @@
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  position: relative;
+  min-height: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji,
+    Segoe UI Emoji, Segoe UI Symbol;
+  background: #fff;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin: auto;
+}
+
+section {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 100vh;
+  gap: 20px;
+}
+
+section:not(:last-child):after {
+  position: absolute;
+  content: "scroll down";
+  bottom: 10px;
+  font-size: 20px;
+  text-transform: uppercase;
+}
+
+section:nth-child(even) {
+  background: #f8f8f8;
+}
+
+@media (max-width: 720px) {
+  section {
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 600px) {
+  .pie {
+    width: 150px !important;
+    height: 150px !important;
+  }
+  .pie svg {
+    width: 150px;
+    height: 150px;
+  }
+}
