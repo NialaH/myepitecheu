@@ -29,7 +29,14 @@ const insertCircle = (proj) => {
 
     const projectNode = findElemByText('span', proj.project.name, XPathResult.FIRST_ORDERED_NODE_TYPE)?.singleNodeValue;
     const circle = document.createElement('div');
-    circle.classList.add('progress--circle', 'center-circle', `progress--${Math.round(percentage / 5) * 5}`);
+    circle.classList.add(
+        'progress--circle',
+        'center-circle',
+        'mobile',
+        'computer',
+        'tablet',
+        `progress--${Math.round(percentage / 5) * 5}`,
+    );
 
     const percent = document.createElement('div');
     percent.classList.add('progress__number');
@@ -82,40 +89,42 @@ const fetchData = async (year) => {
 
 const patchMyEpitech = async () => {
     isActive = true;
-    if (window.innerWidth > 1000) {
-        const currentYear = getYear(window.location.href);
-        patchYear(currentYear);
-        const projects = await fetchData(currentYear);
-        removeUselessButton(projects.length);
+    const currentYear = getYear(window.location.href);
+    patchYear(currentYear);
+    const projects = await fetchData(currentYear);
+    removeUselessButton(projects.length);
+    stockProj = projects;
 
-        // const coverage = findElemByText('div', 'Coverage', XPathResult.ANY_TYPE);
-        // var node,
-        //     nodes = [];
-        // while ((node = coverage.iterateNext())) nodes.push(node);
-        // console.log(nodes);
+    // const coverage = findElemByText('div', 'Coverage', XPathResult.ANY_TYPE);
+    // var node,
+    //     nodes = [];
+    // while ((node = coverage.iterateNext())) nodes.push(node);
+    // console.log(nodes);
 
-        projects.map((proj) => {
-            try {
-                insertCircle(proj);
-                // if (
-                //     proj.results.externalItems.find((elem) => elem.type === 'coverage.branches')?.value === 0 &&
-                //     proj.results.externalItems.find((elem) => elem.type === 'coverage.lines')?.value === 0
-                // )
-            } catch (e) {
-                console.log(e);
-            }
-        });
-    } else alert("L'extension est uniquement disponible sur PC");
+    projects.map((proj) => {
+        try {
+            insertCircle(proj);
+            // if (
+            //     proj.results.externalItems.find((elem) => elem.type === 'coverage.branches')?.value === 0 &&
+            //     proj.results.externalItems.find((elem) => elem.type === 'coverage.lines')?.value === 0
+            // )
+        } catch (e) {
+            console.log(e);
+        }
+    });
     isActive = false;
 };
 
 chrome.runtime.onMessage.addListener(async (request, sender, sendResponse) => {
     if (request.message === 'refresh' && !isActive) {
-        console.log('Trigger url change');
         addedElements.map((elem) => elem.remove());
         addedElements = [];
-        await patchMyEpitech();
+        setTimeout(async () => await patchMyEpitech(), 100);
     }
 });
 
-if (window.location.href.includes('#')) patchMyEpitech();
+const launchScript = () => {
+    if (window.location.href.includes('#')) patchMyEpitech();
+};
+
+window.onload = launchScript();
