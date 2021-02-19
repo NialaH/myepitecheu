@@ -80,14 +80,21 @@ const getPercentage = (results) => {
 };
 
 const fetchData = async (year) => {
-  const res = await fetch(`https://api.epitest.eu/me/${year}`, {
-    headers: {
-      authorization: `Bearer ${localStorage.getItem("argos-elm-openidtoken")}`,
-    },
-    method: "GET",
-  });
-  const data = await res.json();
-  return data;
+  try {
+    console.log(year);
+    const res = await fetch(`https://api.epitest.eu/me/${year}`, {
+      headers: {
+        authorization: `Bearer ${localStorage.getItem(
+          "argos-elm-openidtoken"
+        )}`,
+      },
+      method: "GET",
+    });
+    const data = await res.json();
+    return data;
+  } catch (e) {
+    console.log(e);
+  }
 };
 
 const patchMyEpitech = async () => {
