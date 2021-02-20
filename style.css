@@ -75,6 +75,7 @@
     margin: 1rem;
     border-radius: 50%;
     background-color: #ffcccc;
+    left: 10vw;
 }
 .progress--circle:before {
     content: '';
